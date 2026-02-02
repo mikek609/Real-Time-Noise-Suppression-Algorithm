@@ -1,0 +1,12 @@
+# Python
+__pycache_/
+*.pyc
+
+# MATLAB
+*.asv
+*.m~
+
+# Audio files
+*.wav
+*.flac
+*.mp3
