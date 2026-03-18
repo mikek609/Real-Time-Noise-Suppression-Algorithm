@@ -10,3 +10,9 @@ __pycache_/
 *.wav
 *.flac
 *.mp3
+
+# Build errors
+build/
+*.elf
+*.bin
+*.hex
