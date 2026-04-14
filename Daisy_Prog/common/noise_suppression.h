@@ -1,5 +1,7 @@
 #include <cstddef>
 #include <cstdint>
+#include <limits>
+#include <cmath>
 
 #define BIN_FRAMES      312
 #define LAMBDA          0.05
@@ -7,14 +9,16 @@
 #define N               256 //FFT SIZE
 #define OVERSAMP        4   //oversampling factor
 #define NUM_FREQ_BINS   128
+#define FRAME_INC       64  //size of frames
 
 typedef struct{
-    float M1[NUM_FREQ_BINS];
+    float M1[NUM_FREQ_BINS]; //these four track the noise floor per bin
     float M2[NUM_FREQ_BINS];
     float M3[NUM_FREQ_BINS];
     float M4[NUM_FREQ_BINS];
     float mmse[NUM_FREQ_BINS]; //minimum across m1-m4
-    float overlap_buf[N];
+    float overlap_buf[N]; //tail of previous frame for overlap-add
+    float window[N]; //coefficiant for frame shape
     int count_min;
 }NS_State;
 
