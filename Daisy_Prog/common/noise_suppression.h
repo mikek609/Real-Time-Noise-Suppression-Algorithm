@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <limits>
 #include <cmath>
+#include <algorithm>
 
 #define BIN_FRAMES      312
 #define LAMBDA          0.05
@@ -18,6 +19,7 @@ typedef struct{
     float M4[NUM_FREQ_BINS];
     float mmse[NUM_FREQ_BINS]; //minimum across m1-m4
     float overlap_buf[N]; //tail of previous frame for overlap-add
+    float ola_buf[N]; //tail of previous frame for output overlap
     float window[N]; //coefficiant for frame shape
     int count_min;
 }NS_State;
