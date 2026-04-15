@@ -1,5 +1,3 @@
-#define DR_WAV_IMPLEMENTATION
-#include "dr_wav.h"
 #include "noise_suppression.h"
 #include "fft_wrapper.h"
 
@@ -59,7 +57,7 @@ void ns_process_block(NS_State& state, const float* input, float* output){
         mag[k] = std::abs(fft_buf[k]);
     }
 
-    for(int k = 0; k<NUM_FREQ_BINS; k++){
+    for(int k = 0; k < NUM_FREQ_BINS; k++){
         state.M1[k] = std::min(state.M1[k], mag[k]);
     }
     state.count_min++;
@@ -83,7 +81,7 @@ void ns_process_block(NS_State& state, const float* input, float* output){
         //calculating the gain
         g[k] = std::max((float)LAMBDA, 1.0f - ALPHA* state.mmse[k] / (mag[k]+ EPS));
 
-        fft_buf[k]  *= g[k];
+        fft_buf[k]  *= g[k]; //apply gain
     }
 
     //building upper half of spectrum as mirror image
@@ -109,8 +107,7 @@ void ns_process_block(NS_State& state, const float* input, float* output){
         output[i] = time_output[i];
     }
 
-    for(int i=FRAME_INC; i < N; i++){
+    for(int i=0 ; i < N - FRAME_INC; i++){
         state.ola_buf[i] = time_output[i + FRAME_INC];
     }
 }
-

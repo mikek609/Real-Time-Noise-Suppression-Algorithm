@@ -10,6 +10,7 @@ compile cleanly for both targets with no modification.
   suppression algorithm, ported from the MATLAB prototype
 - fft_wrapper.h — thin FFT interface used by the algorithm. Implemented by either
   fft_wrapper_pc.cpp (PC validation) or fft_wrapper_cmsis.cpp (Daisy embedded)
+- dr_wav.h — wav proccessing header for pc side validation
 
 ## Validation Strategy
 
