@@ -11,6 +11,7 @@
 #define OVERSAMP        4   //oversampling factor
 #define NUM_FREQ_BINS   128
 #define FRAME_INC       64  //size of frames
+#define PI              3.14159 // added
 
 typedef struct{
     float M1[NUM_FREQ_BINS]; //these four track the noise floor per bin

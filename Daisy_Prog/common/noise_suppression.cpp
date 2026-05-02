@@ -11,7 +11,7 @@ void ns_init(NS_State& state){
 //populating overlap buf with zeros and window shape (hamming coefficients)
     for(int i=0; i< N; i++)
     {
-        state.window[i] = sqrt((1-0.85185*cos((2*i+1)* M_PI/N))/OVERSAMP);
+        state.window[i] = sqrt((1-0.85185*cos((2*i+1)* PI/N))/OVERSAMP);
         state.overlap_buf[i] = 0;
         state.ola_buf[i] = 0;
     }

@@ -1,23 +1,16 @@
-TARGET = blink_led
+PC_TARGET  = noise_suppression_pc
+CXX = C:/msys64/mingw64/bin/g++
+CFLAGS     = -std=c++17 -O2 -Icommon
 
-CPP_SOURCES = src/blink_led.cpp
+SOURCES    = common/pc_main.cpp \
+             common/noise_suppression.cpp \
+             common/fft_wrapper_pc.cpp
 
-# Library Locations
-LIBDAISY_DIR = ./libDaisy
-DAISYSP_DIR = ./DaisySP
+$(PC_TARGET): $(SOURCES)
+	$(CXX) $(CFLAGS) $(SOURCES) -o $(PC_TARGET)
 
-# CMSIS-DSP
-CMSIS_DSP = $(LIBDAISY_DIR)/Drivers/CMSIS-DSP
+run: $(PC_TARGET)
+	./$(PC_TARGET)
 
-C_INCLUDES += -I$(CMSIS_DSP)/Include
-C_INCLUDES += -I$(CMSIS_DSP)/Include/dsp
-C_INCLUDES += -I$(CMSIS_DSP)/PrivateInclude
-
-C_SOURCES += $(CMSIS_DSP)/Source/TransformFunctions/TransformFunctions.c
-C_SOURCES += $(CMSIS_DSP)/Source/CommonTables/CommonTables.c
-C_SOURCES += $(CMSIS_DSP)/Source/ComplexMathFunctions/ComplexMathFunctions.c
-C_SOURCES += $(CMSIS_DSP)/Source/BasicMathFunctions/BasicMathFunctions.c
-C_SOURCES += $(CMSIS_DSP)/Source/WindowFunctions/WindowFunctions.c
-
-SYSTEM_FILES_DIR = $(LIBDAISY_DIR)/core
-include $(SYSTEM_FILES_DIR)/Makefile
+clean:
+	rm -f $(PC_TARGET)

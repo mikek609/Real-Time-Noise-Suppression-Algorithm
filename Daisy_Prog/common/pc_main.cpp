@@ -1,7 +1,10 @@
+#define DR_WAV_IMPLEMENTATION
 #include "dr_wav.h"
 #include "noise_suppression.h"
 #include <vector>
 #include <cstdio>
+
+
 
 int main() {
     //reading wav section
